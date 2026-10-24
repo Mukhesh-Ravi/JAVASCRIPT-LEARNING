@@ -1,0 +1,44 @@
+// Practice Q1: Library Late Fees
+// Write getFees(books).
+// The fee is ₹5 for every day a book is late, but at most ₹30 per book.
+// Return an object: borrower name -> their total fee.
+// Leave out borrowers who owe nothing.
+// Rules: no for/while loops.
+
+const books = [
+  { title: "Dune",    borrower: "Asha", daysLate: 3 },
+  { title: "Emma",    borrower: "Ravi", daysLate: 0 },
+  { title: "Ulysses", borrower: "Asha", daysLate: 5 },
+  { title: "Hamlet",  borrower: "Mina", daysLate: 2 },
+  { title: "Ivanhoe", borrower: "Ravi", daysLate: 0 },
+  { title: "Beloved", borrower: "Mina", daysLate: 10 },
+];
+
+// ---------- Write your code below this line ----------
+
+const getFees = books => {
+  // your code here
+  if(books.length ===  0) 
+  {
+    console.log("Empty Array");
+    return;
+  }
+const fineObject =  books.reduce((acc,{borrower, daysLate}) =>{
+  
+if(daysLate>0)
+{
+
+    if(!acc[borrower] )
+    {
+      acc[borrower] = 0;
+    }
+    acc[borrower] += (daysLate*5 > 30 ? 30 : daysLate*5);
+}
+    return acc;
+  },{});
+  return fineObject;
+};
+
+// ---------- Do not change the code below ----------
+console.log(getFees(books));
+console.log(getFees([]));
